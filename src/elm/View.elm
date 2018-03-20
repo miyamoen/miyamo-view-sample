@@ -1,7 +1,7 @@
 module View exposing (view)
 
 import Element exposing (..)
-import Element.Attributes as Attrs exposing (..)
+import Element.Attributes exposing (..)
 import Element.Events exposing (..)
 import Html exposing (Html)
 import Styles exposing (Styles(..), styleSheet)
@@ -14,7 +14,6 @@ view model =
         column None
             [ width <| fill
             , height <| fill
-            , spacing 10
             , center
             , verticalCenter
             ]
