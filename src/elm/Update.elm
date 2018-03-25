@@ -10,7 +10,16 @@ update msg model =
         NoOp ->
             model => []
 
+        Load ->
+            { model | state = Loading } => []
+
+        EndLoading ->
+            { model | state = Completed } => []
+
+        EndCompleted ->
+            { model | state = Idle } => []
+
 
 init : ( Model, List (Cmd Msg) )
 init =
-    {} => []
+    { state = Idle } => []
