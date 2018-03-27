@@ -15,27 +15,28 @@ img {
     max-width: 200px;
 }
 
-.youtube {
-    background-color: black;
+.loading-a {
+    --miyamoen-main-color: black;
     --miyamoen-n: 8;
 }
 
-.youtube .item {
+.loading-a .item {
     transform: rotate(calc(var(--miyamoen-i) * 360deg / var(--miyamoen-n)));
 }
 
-.youtube .ball {
+.loading-a .ball {
     border-radius: 50%;
+    background-color: var(--miyamoen-main-color);
 
-    animation: yt_ball 1s steps(var(--miyamoen-n))
+    animation: loading-a-ball 1s steps(var(--miyamoen-n))
         calc(var(--miyamoen-i) / var(--miyamoen-n) * 1s) infinite;
 }
 
-@keyframes yt_ball {
+@keyframes loading-a-ball {
     0% {
-        background: hsla(0, 100%, 100%, 1);
+        filter: opacity(100%);
     }
     100% {
-        background: hsla(0, 100%, 100%, 0.2);
+        filter: opacity(20%);
     }
 }

@@ -41,13 +41,13 @@ loadingButton { state } =
         --         )
         ]
         [ button None [] <| text "Load"
-        , el (VarN 8)
+        , el (VarN Styles.n)
             [ width <| px 120
             , height <| px 120
-            , classList [ "youtube" => True ]
+            , classList [ "loading-a" => True ]
             ]
             empty
-            |> within (List.range 0 7 |> List.map loadingCircle)
+            |> within (List.range 0 (Styles.n - 1) |> List.map loadingCircle)
         ]
 
 
@@ -61,8 +61,8 @@ loadingCircle index =
         , classList [ "item" => True ]
         ]
         [ el None
-            [ width <| px 30
-            , height <| px 30
+            [ width <| px 20
+            , height <| px 20
             , classList [ "ball" => True ]
             ]
             empty
