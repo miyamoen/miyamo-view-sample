@@ -1,6 +1,7 @@
 module View exposing (view)
 
 import AnimationEvents exposing (AnimationEvent, animationEnd, considerAnimationEvent)
+import Css.Inline exposing (Transforms(Rotate), transforms)
 import Element exposing (..)
 import Element.Attributes exposing (..)
 import Element.Events exposing (..)
@@ -47,18 +48,22 @@ loadingButton { state } =
             , classList [ "loading-a" => True ]
             ]
             empty
-            |> within (List.range 0 (Styles.n - 1) |> List.map loadingCircle)
+            |> within
+                (List.range 0 (Styles.n - 1)
+                    |> List.map (loadingCircle Styles.n)
+                )
         ]
 
 
-loadingCircle : Int -> Element Styles variation msg
-loadingCircle index =
+loadingCircle : Int -> Int -> Element Styles variation msg
+loadingCircle n index =
     row (VarI index)
         [ width fill
         , height fill
         , padding 2
         , center
         , classList [ "item" => True ]
+        , inlineStyle [ transforms [ Rotate <| degrees (toFloat index * 360 / toFloat n) ] ]
         ]
         [ el None
             [ width <| px 20

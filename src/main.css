@@ -15,15 +15,6 @@ img {
     max-width: 200px;
 }
 
-.loading-a {
-    --miyamoen-main-color: black;
-    --miyamoen-n: 8;
-}
-
-.loading-a .item {
-    transform: rotate(calc(var(--miyamoen-i) * 360deg / var(--miyamoen-n)));
-}
-
 .loading-a .ball {
     border-radius: 50%;
     background-color: var(--miyamoen-main-color);
