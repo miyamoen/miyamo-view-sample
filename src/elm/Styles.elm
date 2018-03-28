@@ -1,4 +1,4 @@
-module Styles exposing (Styles(..), n, styleSheet)
+module Styles exposing (Styles(..), Variation(..), n, styleSheet)
 
 import Color exposing (Color, rgba)
 import Color.Convert exposing (colorToCssRgba)
@@ -14,24 +14,28 @@ import Style.Transition as Transition exposing (Transition)
 
 n : Int
 n =
-    12
+    24
 
 
 type Styles
     = None
-    | VarN Int
+
+
+type Variation
+    = VarN Int
     | VarI Int
 
 
-styleSheet : StyleSheet Styles variation
+styleSheet : StyleSheet Styles Variation
 styleSheet =
     Style.styleSheet
-        [ style None []
-        , style (VarN 8) [ varN 8 ]
-        , style (VarN n) [ varN n ]
-        , List.range 0 (n - 1)
-            |> List.map (\i -> style (VarI i) [ varI i ])
-            |> mix
+        [ style None <|
+            List.concat
+                [ List.range 1 n
+                    |> List.map (\n -> variation (VarN n) [ varN n ])
+                , List.range 0 (n - 1)
+                    |> List.map (\i -> variation (VarI i) [ varI i ])
+                ]
         ]
 
 

@@ -7,7 +7,7 @@ import Element.Attributes exposing (..)
 import Element.Events exposing (..)
 import Html exposing (Html)
 import Rocket exposing ((=>))
-import Styles exposing (Styles(..), styleSheet)
+import Styles exposing (Styles(..), Variation(..), styleSheet)
 import Types exposing (..)
 
 
@@ -25,7 +25,7 @@ view model =
             ]
 
 
-loadingButton : Model -> Element Styles variation Msg
+loadingButton : Model -> Element Styles Variation Msg
 loadingButton { state } =
     column None
         [ center
@@ -42,9 +42,10 @@ loadingButton { state } =
         --         )
         ]
         [ button None [] <| text "Load"
-        , el (VarN Styles.n)
+        , el None
             [ width <| px 120
             , height <| px 120
+            , vary (VarN Styles.n) True
             , classList [ "loading-a" => True ]
             ]
             empty
@@ -55,15 +56,19 @@ loadingButton { state } =
         ]
 
 
-loadingCircle : Int -> Int -> Element Styles variation msg
+loadingCircle : Int -> Int -> Element Styles Variation msg
 loadingCircle n index =
-    row (VarI index)
+    row None
         [ width fill
         , height fill
         , padding 2
         , center
+        , vary (VarI index) True
         , classList [ "item" => True ]
-        , inlineStyle [ transforms [ Rotate <| degrees (toFloat index * 360 / toFloat n) ] ]
+        , inlineStyle
+            [ transforms
+                [ Rotate <| degrees (toFloat index * 360 / toFloat n) ]
+            ]
         ]
         [ el None
             [ width <| px 20
