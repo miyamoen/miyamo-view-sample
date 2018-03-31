@@ -6,7 +6,9 @@ import Element exposing (..)
 import Element.Attributes exposing (..)
 import Element.Events exposing (..)
 import Html exposing (Html)
+import Loading exposing (blinkingCircle)
 import Rocket exposing ((=>))
+import Showcase
 import Styles exposing (Styles(..), Variation(..), styleSheet)
 import Types exposing (..)
 
@@ -15,13 +17,14 @@ view : Model -> Html Msg
 view model =
     Element.viewport styleSheet <|
         column None
-            [ width <| fill
-            , height <| fill
+            [ width fill
+            , height fill
             , center
             , verticalCenter
+            , padding 10
             ]
-            [ text "Hello, Style Elements"
-            , loadingButton model
+            [ text "View Sample"
+            , Showcase.view { width = fill, height = fill } [ blinkingCircle 12 ]
             ]
 
 
@@ -42,40 +45,7 @@ loadingButton { state } =
         --         )
         ]
         [ button None [] <| text "Load"
-        , el None
-            [ width <| px 120
-            , height <| px 120
-            , vary (VarN Styles.n) True
-            , classList [ "loading-a" => True ]
-            ]
-            empty
-            |> within
-                (List.range 0 (Styles.n - 1)
-                    |> List.map (loadingCircle Styles.n)
-                )
-        ]
-
-
-loadingCircle : Int -> Int -> Element Styles Variation msg
-loadingCircle n index =
-    row None
-        [ width fill
-        , height fill
-        , padding 2
-        , center
-        , vary (VarI index) True
-        , classList [ "item" => True ]
-        , inlineStyle
-            [ transforms
-                [ Rotate <| degrees (toFloat index * 360 / toFloat n) ]
-            ]
-        ]
-        [ el None
-            [ width <| px 20
-            , height <| px 20
-            , classList [ "ball" => True ]
-            ]
-            empty
+        , blinkingCircle 12
         ]
 
 

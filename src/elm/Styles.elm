@@ -1,15 +1,7 @@
 module Styles exposing (Styles(..), Variation(..), n, styleSheet)
 
-import Color exposing (Color, rgba)
-import Color.Convert exposing (colorToCssRgba)
-import Miyamo.Color as COlor
 import Style exposing (..)
-import Style.Border as Border
-import Style.Color as Color
-import Style.Font as Font
-import Style.Shadow as Shadow
 import Style.Sheet exposing (mix)
-import Style.Transition as Transition exposing (Transition)
 
 
 n : Int

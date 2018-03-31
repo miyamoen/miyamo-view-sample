@@ -15,15 +15,28 @@ img {
     max-width: 200px;
 }
 
-.loading-a .ball {
+.style-elements .showcase {
+    border-width: thin;
+    border-color: hsla(30, 80%, 44%, 1);
+}
+
+.style-elements .showcase .box {
+    border-width: thin;
+    border-color: hsla(176, 61%, 47%, 1);
+}
+.blinking-circle {
+    --miyamoen-main-color: hsla(51, 100%, 50%, 1);
+}
+
+.blinking-ball {
     border-radius: 50%;
     background-color: var(--miyamoen-main-color);
 
-    animation: loading-a-ball 1s steps(var(--miyamoen-n))
+    animation: blinking-ball 1s steps(var(--miyamoen-n))
         calc(var(--miyamoen-i) / var(--miyamoen-n) * 1s) infinite;
 }
 
-@keyframes loading-a-ball {
+@keyframes blinking-ball {
     0% {
         filter: opacity(100%);
     }
